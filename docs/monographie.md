@@ -5,17 +5,14 @@ consigne: http://prodageo.insa-rouen.fr/casimono/sujetprojmd/consignes.html
 
 ## Cartouche
 
- - Code du sujet : nnx (nn : 2 chiffres, x : une lettre) - exemple : 60A 
- - Code de l'alliance : aaaasnnx (aaaa : année, s : saison, nnx : code du sujet) - exemple : 2019A60A
+ - Code du sujet : 60M
+ - Code de l'alliance : 2020A60M 
  - Liste des équipes
-   - {Code équipe issu de Moodle } - {Nom équipe 1 _(if any)_}
-     - { Nom }, {prénom} ({pseudo Github membre 1-1})
-     - { Nom }, {prénom} ({pseudo Github membre 1-2})
-     - ...
-   - {Nom équipe 2}
-     - { Nom }, {prénom} ({pseudo Github membre 2-1})
-     - ...
-   - ...
+   - {E05} - {Nom équipe 1 _(if any)_}
+     - Abbassi, Imane (iabbassi)
+     - Billoré, Jessica (jbillore)
+     - Bouvet, Marie (mbouvet1)
+
 ## Partie A
 
 ### A0 : Introduction.
