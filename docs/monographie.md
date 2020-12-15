@@ -20,6 +20,7 @@ consigne: http://prodageo.insa-rouen.fr/casimono/sujetprojmd/consignes.html
 | 1.0     | 05/11/2020 | Monographie partie A (version déposée sur Moodle) |
 | 1.1 | 21/11/2020 | Correction partie A (parties A0, A1, A2, A3, A6) selon retour de M.Baucher   |
 | 2.0 | 01/12/2020 | Monographie partie B (version déposée sur Moodle)|
+| 3.0 | 15/12/2020 | Monographie partie C (version déposée sur Moodle)|
 
 
 ## Partie A
@@ -231,12 +232,19 @@ CAS utilise un protocole HTTP standard. Il se base sur un principe d'échange de
 
 ![](https://i.imgur.com/alZOeGZ.png)
 
+
 ## Partie C
+### C1. Architecture solution CAS
 
-### C1. Architecture solution W
+![](https://i.imgur.com/ZIM56CV.png)
 
-### C2. Architecture solution X
-
-### C3. Architecture solution Y
-
-### C4. Architecture solution Z
+1. L'utilisateur souhaite accéder à une ressource protégée.
+2. Le client CAS envoie une redirection (code 302) vers le serveur CAS avec en paramètre une URL, appelée serviceID. Cette dernière permet au serveur CAS d'identifier l'application qui a rédirigé le client vers lui.
+3. En retour, le serveur envoie une page d'authentification à l'utilisateur.
+4. L'utilisateur renseigne ses identifiants de connexion dans le formulaire et envoie les informations au serveur.
+5. Lorsque le serveur a authentifié le client, il va faire trois choses :
+    * Mettre un cookie de session sécurisé CASTGC *(CAS Ticket Granting Cookie)* sur le chemin /cas. C'est sur ce dernier que repose l'authentification SSO. Il persistera jusqu'à la fermeture du navigateur ou à l'expiration de la session HTTP.
+    * Générer un nombre aléatoire sans signification particulière qu'on appelle service ticket (ST). Ce dernier sera associé à l'identifiant du client et stocké dans la mémoire du serveur CAS. 
+    * Vérifier que le serviceID fourni par le client correspond bien à un service qui lui est associée. Le serveur va ensuite rediriger le client vers l'URL correspond au service ID en lui passant en paramètre GET le service ticket.
+6. Le client CAS récupère le service ticket dans la requête de redirection et appelle directement le serveur CAS en lui transmettant le service ticket.
+7. Le serveur CAS va contrôler que l'URL de l'application est une URL enregistrée et que celle-ci est bien associée au ticket. Puis, il va répondre en envoyant l'identifiant du client qui vient de s'identifier. Ce dernier permettra au WebApp de s'assurer de l'authentification de l'utilisateur et de lui permettre l'accès au contenu protégé.
